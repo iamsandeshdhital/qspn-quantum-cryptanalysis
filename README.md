@@ -47,6 +47,16 @@ python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 
 pip install -e .
+
+# For all features (API, hardware, advanced mitigation)
+pip install -e ".[all]"
+```
+
+### Docker (recommended for labs and production)
+
+```bash
+docker build -t qspn .
+docker run -v $(pwd)/results:/app/results qspn -m qspn.cli --quick
 ```
 
 <details>
@@ -388,6 +398,57 @@ These are stated plainly because they bound what the results mean.
 
 ---
 
+## Advanced Features
+
+### Error Mitigation
+
+State-of-the-art error mitigation techniques:
+
+- **Readout mitigation**: pinv, clip, NNLS
+- **Zero-noise extrapolation (ZNE)**: linear, Richardson, exponential
+- **Probabilistic error cancellation (PEC)**
+- **Clifford data regression (CDR)**
+- **Virtual distillation (VD)**
+- **Dynamical decoupling (DD)**: XY4, XY8, CPMG, UDD
+
+```python
+from qspn.mitigation import MitigationPipeline
+
+pipeline = MitigationPipeline()
+pipeline.add_readout_mitigation(assignment_matrix)
+pipeline.add_zne(scale_factors, noisy_values)
+results = pipeline.apply(counts, num_qubits=4)
+```
+
+### Benchmarking Suite
+
+Standardized benchmarks for quantum computing labs and companies:
+
+```bash
+python scripts/run_benchmark.py
+python scripts/run_benchmark.py --backend ibmq_quito
+```
+
+Benchmarks include: gate fidelity, coherence times, readout fidelity,
+Grover performance, and quantum volume.
+
+### REST API
+
+Remote access via FastAPI:
+
+```bash
+uvicorn qspn.api:app --host 0.0.0.0 --port 8000
+# Visit http://localhost:8000/docs for interactive documentation
+```
+
+### Hardware Integration
+
+Validate simulation against real IBM Quantum hardware:
+
+```bash
+python scripts/validate_hardware.py --backend ibmq_quito --qubits 4
+```
+
 ## Documentation
 
 - **`docs/REPORT.md`** — narrative walkthrough of every component, the design
@@ -405,6 +466,7 @@ These are stated plainly because they bound what the results mean.
 - **`docs/VALIDATION.md`** — comprehensive validation framework documentation,
   including noise model validation, oracle verification, and hardware
   characterization.
+- **`docs/ADVANCED.md`** — advanced usage guide for labs, companies, and universities.
 
 ## Validation
 

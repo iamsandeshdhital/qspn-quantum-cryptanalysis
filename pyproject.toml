@@ -25,10 +25,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-hardware = ["qiskit-ibm-runtime>=0.20"]
-
-[project.optional-dependencies]
 dev = ["pytest>=7.4", "pytest-cov>=4.1"]
+hardware = ["qiskit-ibm-runtime>=0.20"]
+api = ["fastapi>=0.100", "uvicorn>=0.20", "pydantic>=2.0"]
+all = [
+  "qiskit-ibm-runtime>=0.20",
+  "fastapi>=0.100",
+  "uvicorn>=0.20",
+  "pydantic>=2.0",
+  "scikit-learn>=1.0",
+]
 
 [project.scripts]
 qspn-run = "qspn.cli:main"
