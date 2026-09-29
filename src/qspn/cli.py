@@ -86,6 +86,32 @@ def build_parser() -> argparse.ArgumentParser:
         "--readout-10", type=float, default=0.04, help="P(measure 0 | prepared 1)"
     )
     parser.add_argument(
+        "--t1", type=float, default=100e-6, help="T1 relaxation time (seconds)"
+    )
+    parser.add_argument(
+        "--t2", type=float, default=150e-6, help="T2 dephasing time (seconds)"
+    )
+    parser.add_argument(
+        "--overrotation-1q", type=float, default=0.001,
+        help="1-qubit coherent overrotation (radians)"
+    )
+    parser.add_argument(
+        "--overrotation-2q", type=float, default=0.002,
+        help="2-qubit coherent overrotation (radians)"
+    )
+    parser.add_argument(
+        "--crosstalk-factor", type=float, default=0.1,
+        help="Crosstalk error factor"
+    )
+    parser.add_argument(
+        "--leakage-prob", type=float, default=0.001,
+        help="Leakage probability per gate"
+    )
+    parser.add_argument(
+        "--drift-rate", type=float, default=0.0,
+        help="Error rate drift per hour (fractional)"
+    )
+    parser.add_argument(
         "--key-widths",
         default="4,5,6,7,8",
         help="comma-separated key widths for the Experiment E resource scan",
@@ -252,6 +278,13 @@ def main(argv: list[str] | None = None) -> int:
         p2=args.p2,
         p_read_1_given_0=args.readout_01,
         p_read_0_given_1=args.readout_10,
+        t1=args.t1,
+        t2=args.t2,
+        overrotation_1q=args.overrotation_1q,
+        overrotation_2q=args.overrotation_2q,
+        crosstalk_factor=args.crosstalk_factor,
+        leakage_prob=args.leakage_prob,
+        drift_rate=args.drift_rate,
     )
 
     records: dict[str, dict[str, Any]] = {}

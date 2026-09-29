@@ -370,9 +370,10 @@ These are stated plainly because they bound what the results mean.
    its permutation matrix by quantum Shannon decomposition (Shende et al. 2006),
    costing ~95 CX. A hand-built Toffoli network would be substantially cheaper,
    so **all reported gate counts are upper bounds**, not optimal estimates.
-3. **The noise model is a simplification.** Depolarizing plus readout error,
-   uniform across qubits, with no `T₁`/`T₂` decay, crosstalk, leakage, drift or
-   correlated readout error. Real devices are worse and less uniform.
+3. **The noise model is a simplification.** The extended noise model now includes
+   T1/T2 thermal relaxation, coherent overrotation, crosstalk, leakage, and drift,
+   but real devices have additional correlated errors, non-Markovian noise, and
+   time-varying calibration that are not fully captured.
 4. **Mitigation ≠ correction.** Readout mitigation is post-processing on a
    classical histogram. It corrects no quantum state and cannot address gate
    error — Experiment C measures exactly that limit. Zero-noise extrapolation
@@ -381,6 +382,9 @@ These are stated plainly because they bound what the results mean.
 6. **`M` is obtained by classical brute force** to set the iteration count. Valid
    for studying the algorithm; a real attacker would use the exponential-search
    schedule of Boyer et al. (1998).
+7. **No real hardware validation by default.** The `qspn.hardware` module provides
+   tools for hardware characterization, but validation against real IBM Quantum
+   backends requires credentials and is not run in CI.
 
 ---
 
@@ -398,6 +402,23 @@ These are stated plainly because they bound what the results mean.
   recording which findings were actioned. Three overclaims it identified (the M3
   attribution, the Nachman et al. reading, and the noiseless-`rz` justification)
   have been corrected in the code and both reports.
+- **`docs/VALIDATION.md`** — comprehensive validation framework documentation,
+  including noise model validation, oracle verification, and hardware
+  characterization.
+
+## Validation
+
+The project includes a comprehensive validation framework:
+
+```bash
+# Run all validation checks
+python scripts/run_validation.py
+
+# Validate against real IBM Quantum hardware
+python scripts/validate_hardware.py --backend ibmq_quito --qubits 4
+```
+
+See **`docs/VALIDATION.md`** for full documentation.
 
 Build everything — experiments, figures, report macros, PDF — in one command:
 
