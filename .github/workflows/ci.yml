@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Run test suite
+        run: pytest -q
+
+      # tests/test_experiments.py already drives every experiment end to end at
+      # low shot counts, including the noise model, calibration and mitigation.
+      # This step only checks the CLI wiring -- argument parsing, JSON records,
+      # figure generation, summary formatting -- so it deliberately picks the two
+      # cheapest experiments rather than repeating the expensive noisy runs.
+      - name: Smoke-test the CLI end to end
+        run: qspn-run --quick --experiments ae --out "$RUNNER_TEMP/results"
+
+      - name: Check the report macros generate from those records
+        run: python scripts/make_report_macros.py --results "$RUNNER_TEMP/results"
+
+      - name: Upload smoke-test artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke-results-py${{ matrix.python-version }}
+          path: ${{ runner.temp }}/results
+          if-no-files-found: ignore

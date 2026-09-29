@@ -1,0 +1,66 @@
+==========================================================================
+QUANTUM SPN CRYPTANALYSIS -- SUMMARY
+==========================================================================
+
+Instance   : 4-bit key, 2 rounds, secret = 1101
+             1 known pair(s), M = 1 marked key(s), 8 qubits
+
+[A] Ideal simulation
+    optimal iterations k*        : 3
+    best measured P(key)         : 0.9613 at k = 3
+    max deviation from sin^2     : 4.33e-15
+    over-rotation observed       : yes
+
+[B] Noisy simulation (at k*)
+    noise p1/p2                  : 1.0e-03 / 1.0e-02
+    transpiled CX / depth        : 1404 / 4861
+    ideal  P(key)                : 0.9613
+    noisy  P(key)                : 0.0574 +/- 0.0036
+    TVD vs ideal                 : 0.9039
+    output entropy (bits)        : 3.9951 (uniform = 4.0000)
+    advantage over random        : -1.4 sigma  (significant: no)
+
+[C] Readout-error mitigation
+    ideal P(key)                 : 0.9613
+    -- readout error only
+       mean readout fidelity     : 0.8852  cond(A) = 1.3
+       raw P(key)                : 0.8408   TVD = 0.1225
+       pinv  P(key)              : 0.9692   TVD = 0.0143   neg.mass = 0.0049   valid = no
+       clip  P(key)              : 0.9644   TVD = 0.0119   neg.mass = -0.0000   valid = yes
+       nnls  P(key)              : 0.9652   TVD = 0.0127   neg.mass = -0.0000   valid = yes
+    -- readout + reduced gate error
+       mean readout fidelity     : 0.8849  cond(A) = 1.3
+       raw P(key)                : 0.6343   TVD = 0.3270
+       pinv  P(key)              : 0.7325   TVD = 0.2288   neg.mass = -0.0000   valid = yes
+       clip  P(key)              : 0.7325   TVD = 0.2288   neg.mass = -0.0000   valid = yes
+       nnls  P(key)              : 0.7325   TVD = 0.2288   neg.mass = -0.0000   valid = yes
+    -- readout + full gate error
+       mean readout fidelity     : 0.8839  cond(A) = 1.3
+       raw P(key)                : 0.0574   TVD = 0.9039
+       pinv  P(key)              : 0.0596   TVD = 0.9017   neg.mass = -0.0000   valid = yes
+       clip  P(key)              : 0.0596   TVD = 0.9017   neg.mass = -0.0000   valid = yes
+       nnls  P(key)              : 0.0596   TVD = 0.9017   neg.mass = -0.0000   valid = yes
+
+[D] Noise threshold
+    circuit                      : 1404 CX, depth 4861
+    largest p2 still recovering  : 3.0e-03
+            p2    P(key)  rank  checks  top-is-key
+       0.0e+00    0.9636     1     1.0         yes
+       1.0e-05    0.9495     1     1.0         yes
+       3.0e-05    0.9358     1     1.0         yes
+       1.0e-04    0.8687     1     1.0         yes
+       3.0e-04    0.7300     1     1.0         yes
+       1.0e-03    0.4048     1     1.0         yes
+       3.0e-03    0.1282     1     1.0         yes
+       1.0e-02    0.0574    13    13.0          no
+       3.0e-02    0.0530    14    14.0          no
+
+[E] Resource scaling
+      n    N=2^n  pairs  qubits    k*       CX    depth   speedup
+      4       16      1       8     3     1404     4861      5.3x
+      5       32      2      13     4     3824    13212      8.0x
+      6       64      2      14     6     5784    19924     10.7x
+      7      128      2      15     8    11232    39172     16.0x
+      8      256      3      20    12    33360    96604     21.3x
+
+==========================================================================

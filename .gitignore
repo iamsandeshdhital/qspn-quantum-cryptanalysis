@@ -1,0 +1,36 @@
+# Git
+.git/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# LaTeX build artefacts -- report.pdf itself IS committed (see below)
+docs/report/*.aux
+docs/report/*.bbl
+docs/report/*.blg
+docs/report/*.log
+docs/report/*.out
+docs/report/*.toc
+docs/report/*.synctex.gz
+docs/report/*.fls
+docs/report/*.fdb_latexmk
+docs/report/b*.log
+docs/report/build*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NOTE: results/ is deliberately NOT ignored.  Committing the JSON records and
+# figures is what makes the report's numbers traceable without a re-run.

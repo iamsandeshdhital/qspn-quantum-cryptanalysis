@@ -1,0 +1,200 @@
+{
+  "experiment": "E_resources",
+  "seed": 20260902,
+  "block_bits": 4,
+  "rows": [
+    {
+      "key_bits": 4,
+      "rounds": 2,
+      "key_space": 16,
+      "num_pairs": 1,
+      "theoretical_min_pairs": 2,
+      "num_solutions": 1,
+      "classical_queries": 16,
+      "grover_iterations": 3,
+      "sqrt_key_space": 4.0,
+      "query_speedup": 5.333333333333333,
+      "analytic_p_success": 0.9613189697265625,
+      "full_circuit": {
+        "num_qubits": 8,
+        "depth": 4861,
+        "size": 8294,
+        "cx": 1404,
+        "sx": 2494,
+        "x": 18,
+        "rz": 4370
+      },
+      "single_iteration": {
+        "num_qubits": 8,
+        "depth": 1622,
+        "size": 2772,
+        "cx": 468,
+        "sx": 834,
+        "x": 6,
+        "rz": 1462
+      },
+      "statevector_amplitudes": 256,
+      "statevector_bytes": 4096,
+      "density_matrix_bytes": 1048576,
+      "calibration_circuits": 16
+    },
+    {
+      "key_bits": 5,
+      "rounds": 2,
+      "key_space": 32,
+      "num_pairs": 2,
+      "theoretical_min_pairs": 3,
+      "num_solutions": 1,
+      "classical_queries": 32,
+      "grover_iterations": 4,
+      "sqrt_key_space": 5.656854249492381,
+      "query_speedup": 8.0,
+      "analytic_p_success": 0.9991823155432941,
+      "full_circuit": {
+        "num_qubits": 13,
+        "depth": 13212,
+        "size": 22438,
+        "cx": 3824,
+        "sx": 6733,
+        "x": 41,
+        "rz": 11830
+      },
+      "single_iteration": {
+        "num_qubits": 13,
+        "depth": 3305,
+        "size": 5621,
+        "cx": 956,
+        "sx": 1687,
+        "x": 11,
+        "rz": 2965
+      },
+      "statevector_amplitudes": 8192,
+      "statevector_bytes": 131072,
+      "density_matrix_bytes": 1073741824,
+      "calibration_circuits": 32
+    },
+    {
+      "key_bits": 6,
+      "rounds": 2,
+      "key_space": 64,
+      "num_pairs": 2,
+      "theoretical_min_pairs": 3,
+      "num_solutions": 1,
+      "classical_queries": 64,
+      "grover_iterations": 6,
+      "sqrt_key_space": 8.0,
+      "query_speedup": 10.666666666666666,
+      "analytic_p_success": 0.996585680786799,
+      "full_circuit": {
+        "num_qubits": 14,
+        "depth": 19924,
+        "size": 33830,
+        "cx": 5784,
+        "sx": 10134,
+        "x": 61,
+        "rz": 17838
+      },
+      "single_iteration": {
+        "num_qubits": 14,
+        "depth": 3323,
+        "size": 5654,
+        "cx": 964,
+        "sx": 1694,
+        "x": 11,
+        "rz": 2983
+      },
+      "statevector_amplitudes": 16384,
+      "statevector_bytes": 262144,
+      "density_matrix_bytes": 4294967296,
+      "calibration_circuits": 64
+    },
+    {
+      "key_bits": 7,
+      "rounds": 3,
+      "key_space": 128,
+      "num_pairs": 2,
+      "theoretical_min_pairs": 3,
+      "num_solutions": 1,
+      "classical_queries": 128,
+      "grover_iterations": 8,
+      "sqrt_key_space": 11.313708498984761,
+      "query_speedup": 16.0,
+      "analytic_p_success": 0.9956198656943223,
+      "full_circuit": {
+        "num_qubits": 15,
+        "depth": 39172,
+        "size": 66606,
+        "cx": 11232,
+        "sx": 20135,
+        "x": 17,
+        "rz": 35206
+      },
+      "single_iteration": {
+        "num_qubits": 15,
+        "depth": 4899,
+        "size": 8345,
+        "cx": 1404,
+        "sx": 2523,
+        "x": 3,
+        "rz": 4413
+      },
+      "statevector_amplitudes": 32768,
+      "statevector_bytes": 524288,
+      "density_matrix_bytes": 17179869184,
+      "calibration_circuits": 128
+    },
+    {
+      "key_bits": 8,
+      "rounds": 4,
+      "key_space": 256,
+      "num_pairs": 3,
+      "theoretical_min_pairs": 3,
+      "num_solutions": 1,
+      "classical_queries": 256,
+      "grover_iterations": 12,
+      "sqrt_key_space": 16.0,
+      "query_speedup": 21.333333333333332,
+      "analytic_p_success": 0.9999470421032736,
+      "full_circuit": {
+        "num_qubits": 20,
+        "depth": 96604,
+        "size": 199403,
+        "cx": 33360,
+        "sx": 60416,
+        "x": 98,
+        "rz": 105508
+      },
+      "single_iteration": {
+        "num_qubits": 20,
+        "depth": 8053,
+        "size": 16641,
+        "cx": 2780,
+        "sx": 5042,
+        "x": 10,
+        "rz": 8807
+      },
+      "statevector_amplitudes": 1048576,
+      "statevector_bytes": 16777216,
+      "density_matrix_bytes": 17592186044416,
+      "calibration_circuits": 256
+    }
+  ],
+  "note": "classical_queries is worst-case exhaustive search; grover_iterations is the oracle-query count, each query costing the listed CX count and depth.",
+  "environment": {
+    "qspn_version": "1.0.0",
+    "python": "3.13.3",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "qiskit": "2.5.2",
+    "qiskit_aer": "0.17.2",
+    "numpy": "2.5.2"
+  },
+  "runtime_seconds": 4.7411417961120605,
+  "config": {
+    "shots": 4096,
+    "seed": 20260902,
+    "optimization_level": 1,
+    "method": "statevector",
+    "max_memory_mb": 4096
+  }
+}

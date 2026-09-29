@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Complexity and Noise-Resilience of Quantum Oracles for Symmetric Cryptanalysis"
+abstract: >-
+  A reproducible study of Grover-based known-plaintext key search against a toy
+  4-bit substitution-permutation network, executed under simulated NISQ noise,
+  with classical readout-error mitigation. Includes exhaustive verification of
+  the reversible encryption circuit against a classical reference.
+authors:
+  - given-names: Luke
+    email: luke@ai4group.com.au
+version: 1.0.0
+date-released: "2026-09-02"
+license: MIT
+keywords:
+  - quantum computing
+  - Grover's algorithm
+  - symmetric cryptanalysis
+  - NISQ
+  - error mitigation
+  - Qiskit
+references:
+  - type: article
+    authors:
+      - family-names: Grover
+        given-names: "Lov K."
+    title: "A fast quantum mechanical algorithm for database search"
+    year: 1996
+    doi: 10.1145/237814.237866
+  - type: article
+    authors:
+      - family-names: Boyer
+        given-names: Michel
+      - family-names: Brassard
+        given-names: Gilles
+      - family-names: Hoyer
+        given-names: Peter
+      - family-names: Tapp
+        given-names: Alain
+    title: "Tight bounds on quantum searching"
+    year: 1998
+    doi: 10.1002/(SICI)1521-3978(199806)46:4/5<493::AID-PROP493>3.0.CO;2-P
