@@ -1,0 +1,45 @@
+# Example QSPN experiment configuration
+# Copy this file and modify for your needs
+
+name: example_experiment
+description: "Example configuration for QSPN experiments"
+
+# SPN cipher parameters
+spn_params:
+  key_bits: 4
+  rounds: 2
+
+# Noise model parameters
+noise_params:
+  p1: 0.001           # Single-qubit depolarizing rate
+  p2: 0.01            # Two-qubit depolarizing rate
+  p_read_1_given_0: 0.02   # Readout error P(1|0)
+  p_read_0_given_1: 0.04   # Readout error P(0|1)
+  t1: 1.0e-4          # T1 relaxation time (seconds)
+  t2: 1.5e-4          # T2 dephasing time (seconds)
+  overrotation_1q: 0.001   # Single-qubit overrotation (radians)
+  overrotation_2q: 0.002   # Two-qubit overrotation (radians)
+  crosstalk_factor: 0.1    # Crosstalk error factor
+  leakage_prob: 0.001      # Leakage probability per gate
+  drift_rate: 0.0          # Error rate drift per hour
+
+# Run configuration
+run_config:
+  shots: 4096
+  seed: 20260902
+  optimization_level: 1
+  method: statevector
+  max_memory_mb: 4096
+
+# Mitigation methods to apply
+mitigation_methods:
+  - nnls
+  - zne
+
+# Tags for organization
+tags:
+  - example
+  - baseline
+
+# Output directory
+output_dir: results/
